@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>{% if object %}Edit{% else %}Add{% endif %} Student</h2>
+
+<form method="post">
+    {% csrf_token %}
+    <div class="mb-3">
+        {{ form.name.label_tag }}
+        {{ form.name }}
+        {% if form.name.errors %}
+        <div class="text-danger">{{ form.name.errors }}</div>
+        {% endif %}
+    </div>
+    <div class="mb-3">
+        {{ form.email.label_tag }}
+        {{ form.email }}
+        {% if form.email.errors %}
+        <div class="text-danger">{{ form.email.errors }}</div>
+        {% endif %}
+    </div>
+    <button type="submit" class="btn btn-success">Save</button>
+    <a href="{% url 'student_list' %}" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}
